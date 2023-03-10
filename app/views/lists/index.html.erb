@@ -1,0 +1,42 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <h3>My List</h3>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+          <li class="nav-item active">
+            <h4><%= link_to 'New list', new_list_path %></h4>
+          </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container pt-5">
+  <h1>List</h1>
+  <div class="container-fluid d-flex justify-content-between">
+    <% @lists.each do |list| %>
+      <% unless list.movies.first.nil? %>
+        <div class="d-flex"><%= link_to list_path(list) do %>
+          <%= image_tag list.movies.first.poster_url, alt: "movie poster", width: 200 %>
+          <p><%= list.name%></p>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="d-flex"><%= link_to list_path(list) do %>
+          <%= image_tag "https://image.tmdb.org/t/p/original/MvYpKlpFukTivnlBhizGbkAe3v.jpg", alt: "movie poster", width: 200 %>
+          <p><%= list.name%></p>
+          <% end %>
+        </div>
+      <% end %>
+
+    <% end %>
+  </div>
+</div>
+
+<%= link_to "Moives", root_path %>

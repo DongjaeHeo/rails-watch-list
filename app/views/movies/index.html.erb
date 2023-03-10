@@ -1,0 +1,45 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <h3>Movie</h3>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+          <li class="nav-item active">
+            <%= simple_form_for :query, url: root_path, method: "GET", html: { class: 'form-inline' } do |f| %>
+              <div class="d-flex align-items-center">
+                <div class="box mt-0 " style="font-size: 0px"><%= f.input :title, input_html: {value: ""}%></div>
+                <div class="box ms-3 mb-2"><%= f.submit "Search", class: "btn btn-primary" %></div>
+              </div>
+            <% end %>
+          </li>
+          <li class="nav-item ms-3 mt-2">
+            <div class=""><h3><%= link_to 'My list', lists_path  %></h3></div>
+          </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="container pt-5">
+<h3><%= link_to 'Add new movie', new_movie_path %></h3>
+
+
+<div class="container-fluid d-flex justify-content-between">
+  <% @movies.each do |movie| %>
+    <div class="d-flex"><%= link_to movie_path(movie) do %>
+      <%= image_tag movie.poster_url, alt: "movie poster", width: 200 %>
+      <p><%= movie.title %></p>
+    <% end %>
+     </div>
+  <% end %>
+</div>
+
+
+</div>
